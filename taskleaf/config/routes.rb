@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     resources :users
   end
   root "tasks#index"
-  resources :tasks
+  resources :tasks do
+    post :confirm, action: :confirm_new, on: :new
+  end
 end
