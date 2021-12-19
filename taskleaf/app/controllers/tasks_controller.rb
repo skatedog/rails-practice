@@ -2,6 +2,11 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
     @tasks = current_user.tasks.recent
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @tasks.generate_csv, filename: "tasks-#{Time.current.strftime('%y%m%d%S')}.csv" }
+    end
   end
 
   def show
