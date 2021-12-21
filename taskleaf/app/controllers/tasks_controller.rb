@@ -51,6 +51,11 @@ class TasksController < ApplicationController
     @task.destroy
     redirect_to tasks_path, notice: "タスク「#{@task.name}」を削除しました。"
   end
+
+  def import
+    current_user.tasks.import(params[:file])
+    redirect_to tasks_path, notice: "タスクを追加しました"
+  end
   
   private
   def set_task
