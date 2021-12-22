@@ -1,4 +1,10 @@
 class Book < ApplicationRecord
+  enum sales_status: {
+    reservation: 0,
+    now_on_sale: 1,
+    end_of_print: 2,
+  }
+
   belongs_to :user
 
   validates :name, presence: true, length: { maximum: 25 }
